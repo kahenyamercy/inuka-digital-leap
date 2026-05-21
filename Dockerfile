@@ -1,22 +1,33 @@
+# Stage 1: Build Angular app
 FROM node:20-alpine AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci --omit=optional
+# Copy package files first (better caching)
+COPY package*.json ./
 
+RUN npm install
+
+# Copy rest of the app
 COPY . .
+
+# use local Angular via npx
 RUN npx ng build --configuration production
 
-FROM nginx:1.25-alpine AS production
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/idl-app/browser /usr/share/nginx/html
+# Stage 2: Serve with Nginx
+FROM nginx:stable-alpine
 
-RUN chmod -R 755 /usr/share/nginx/html
+# Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
 
-RUN rm -f /etc/nginx/conf.d/default.conf
-
+# Copy Angular build output to nginx
+COPY --from=build /app/dist/idl-app/browser/ /usr/share/nginx/html/
+# Expose port 80
 EXPOSE 80
 
+# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
+
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
