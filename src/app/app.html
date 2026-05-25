@@ -1,4 +1,7 @@
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <app-navbar />
 <app-spinner [visible]="loading()" />
-<router-outlet />
+<main id="main-content">
+  <router-outlet />
+</main>
 <app-footer />

@@ -20,6 +20,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   protected readonly isMobileOpen = signal(false);
   protected readonly activeSection = signal('hero');
   protected readonly showBackToTop = signal(false);
+  protected readonly isHomePage = signal(this.router.url === '/' || this.router.url === '');
 
   private observers: IntersectionObserver[] = [];
 
@@ -68,8 +69,6 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
     return this.router.isActive(path, { paths: 'subset', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored' });
   }
 
-  protected readonly isHomePage = signal(true);
-
   private checkHomePage(): void {
     this.isHomePage.set(this.router.url === '/' || this.router.url === '');
   }
@@ -78,6 +77,16 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
     event.preventDefault();
     this.closeMobileMenu();
     this.router.navigateByUrl(path);
+  }
+
+  protected scrollToSection(event: Event, fragment: string): void {
+    event.preventDefault();
+    this.closeMobileMenu();
+    if (this.isHomePage()) {
+      document.getElementById(fragment)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      this.router.navigate(['/'], { fragment });
+    }
   }
 
   protected toggleMobileMenu(): void {

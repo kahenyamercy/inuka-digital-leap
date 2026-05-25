@@ -1,10 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { SITE_CONFIG } from '../../../../core/constants';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

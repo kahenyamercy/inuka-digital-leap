@@ -27,8 +27,8 @@ import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.
         <div class="container">
           <div class="detail-image__wrapper">
             <img
-              src="assets/logos/idl-logo.jpeg"
-              alt="Inuka Digital Leap"
+              [src]="story.image"
+              [alt]="story.title"
               class="detail-image__img"
             />
           </div>

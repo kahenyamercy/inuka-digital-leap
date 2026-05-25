@@ -83,7 +83,7 @@ import { PARTNERS } from '../../../core/constants';
   `,
   styles: [`
     .page-hero {
-      background: linear-gradient(135deg, var(--color-deep-navy) 0%, #0a2a4a 100%);
+      background: url('/assets/network-broadband.jpg') center / cover no-repeat;
       padding: 120px 0 100px;
       text-align: center;
       position: relative;

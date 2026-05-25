@@ -3,3 +3,27 @@
   flex-direction: column;
   min-height: 100dvh;
 }
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 12px 24px;
+  background: var(--color-deep-navy);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--rounded-lg);
+  text-decoration: none;
+  transition: top 0.2s;
+
+  &:focus {
+    top: 16px;
+  }
+}
+
+main {
+  flex: 1;
+}

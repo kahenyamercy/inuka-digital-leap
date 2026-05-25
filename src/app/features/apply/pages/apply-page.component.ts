@@ -16,10 +16,6 @@ import { PARTNERS } from '../../../core/constants';
           Applications Closed
         </div>
         <h1 class="page-hero__title">Applications Are Currently Closed</h1>
-        <p class="page-hero__subtitle">
-          Cohort 1 selection is complete and all 15 trainees have been enrolled. We are not
-          accepting new applications at this time.
-        </p>
       </div>
     </section>
 
@@ -117,7 +113,7 @@ import { PARTNERS } from '../../../core/constants';
   styles: [
     `
       .page-hero {
-        background: linear-gradient(135deg, var(--color-deep-navy) 0%, #0a2a4a 100%);
+        background: url('/assets/fibre-cable.png') center / cover no-repeat;
         padding: 120px 0 100px;
         text-align: center;
         position: relative;

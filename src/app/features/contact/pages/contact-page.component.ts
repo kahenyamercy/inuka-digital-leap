@@ -1,7 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
-import { PARTNERS } from '../../../core/constants';
+import { PARTNERS, SITE_CONFIG } from '../../../core/constants';
 
 @Component({
   selector: 'app-contact-page',
@@ -24,7 +24,22 @@ import { PARTNERS } from '../../../core/constants';
         <div class="contact__layout">
           <!-- Form -->
           <div class="contact__form-wrapper" appScrollReveal="fade-up">
-            <form class="contact__form" action="mailto:info.jhub@jkuat.ac.ke" method="POST" enctype="text/plain">
+            <form class="contact__form" (submit)="onSubmit($event)">
+              <input type="hidden" name="_subject" value="New Contact Form Submission" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="text" name="_honey" style="display:none" />
+              @if (formState() === 'success') {
+                <div class="contact__alert contact__alert--success">
+                  <span class="pi pi-check-circle" aria-hidden="true"></span>
+                  Message sent successfully! We'll get back to you within 1-2 business days.
+                </div>
+              }
+              @if (formState() === 'error') {
+                <div class="contact__alert contact__alert--error">
+                  <span class="pi pi-exclamation-circle" aria-hidden="true"></span>
+                  Something went wrong. Please try again or email us directly.
+                </div>
+              }
               <div class="contact__field">
                 <label for="name" class="contact__label">Full Name</label>
                 <input
@@ -70,10 +85,18 @@ import { PARTNERS } from '../../../core/constants';
                   required
                 ></textarea>
               </div>
-              <button type="submit" class="contact__submit">
-                <span class="pi pi-send" aria-hidden="true"></span>
-                Send message
+              <button type="submit" class="contact__submit" [disabled]="formState() === 'sending'">
+                @if (formState() === 'sending') {
+                  <span class="pi pi-spin pi-spinner" aria-hidden="true"></span>
+                  Sending...
+                } @else {
+                  <span class="pi pi-send" aria-hidden="true"></span>
+                  Send message
+                }
               </button>
+              <p class="contact__form-note">
+                We'll get back to you within 1-2 business days.
+              </p>
             </form>
           </div>
 
@@ -273,7 +296,7 @@ import { PARTNERS } from '../../../core/constants';
       border-radius: var(--rounded-lg);
       padding: 12px 16px;
       outline: none;
-      transition: border-color var(--transition-fast);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 
       &::placeholder {
         color: var(--color-on-surface-variant);
@@ -283,6 +306,16 @@ import { PARTNERS } from '../../../core/constants';
       &:focus {
         border-color: var(--color-electric-blue);
         box-shadow: 0 0 0 3px rgba(237, 27, 36, 0.1);
+      }
+
+      &:user-invalid {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+      }
+
+      &:user-valid {
+        border-color: #16C47F;
+        box-shadow: 0 0 0 3px rgba(22, 196, 127, 0.1);
       }
     }
 
@@ -319,6 +352,44 @@ import { PARTNERS } from '../../../core/constants';
         box-shadow: var(--shadow-glow-blue);
         transform: translateY(-2px);
       }
+    }
+
+    .contact__form-note {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--color-on-surface-variant);
+      margin: 12px 0 0;
+      text-align: center;
+    }
+
+    .contact__alert {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: var(--rounded-lg);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+
+      &--success {
+        background: rgba(22, 196, 127, 0.1);
+        border: 1px solid rgba(22, 196, 127, 0.3);
+        color: #16C47F;
+      }
+
+      &--error {
+        background: rgba(220, 53, 69, 0.1);
+        border: 1px solid rgba(220, 53, 69, 0.3);
+        color: #dc3545;
+      }
+
+      .pi { font-size: 1.1rem; }
+    }
+
+    .contact__submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .contact__info-card {
@@ -541,4 +612,35 @@ import { PARTNERS } from '../../../core/constants';
 })
 export class ContactPageComponent {
   protected readonly partners = PARTNERS;
+  protected readonly siteUrl = SITE_CONFIG.url;
+  protected readonly formState = signal<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  protected async onSubmit(event: Event): Promise<void> {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    if (!form.checkValidity()) return;
+
+    this.formState.set('sending');
+    const data = new FormData(form);
+    const json: Record<string, string> = {};
+    data.forEach((value, key) => {
+      if (typeof value === 'string') json[key] = value;
+    });
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/info.jhub@jkuat.ac.ke', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(json),
+      });
+      if (res.ok) {
+        this.formState.set('success');
+        form.reset();
+      } else {
+        this.formState.set('error');
+      }
+    } catch {
+      this.formState.set('error');
+    }
+  }
 }

@@ -54,8 +54,8 @@ import { STORIES } from '../../../core/constants';
           >
             <div class="featured__card-image">
               <img
-                src="assets/logos/idl-logo.jpeg"
-                alt="Inuka Digital Leap"
+                [src]="story.image"
+                [alt]="story.title"
                 class="featured__card-img"
               />
             </div>
@@ -87,9 +87,12 @@ import { STORIES } from '../../../core/constants';
               [delay]="(i % 3) * 100"
             >
               <div class="stories-page__card-image">
-                <div class="stories-page__card-placeholder">
-                  <span class="pi pi-file-text" aria-hidden="true"></span>
-                </div>
+                <img
+                  [src]="story.image"
+                  [alt]="story.title"
+                  class="stories-page__card-img"
+                  loading="lazy"
+                />
               </div>
               <div class="stories-page__card-body">
                 <div class="stories-page__card-meta">
@@ -227,24 +230,11 @@ import { STORIES } from '../../../core/constants';
       overflow: hidden;
     }
 
-    .featured__card-placeholder {
-      width: 100%;
-      height: 100%;
-      min-height: 320px;
-      background: var(--color-deep-navy);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px;
-    }
-
     .featured__card-img {
       width: 100%;
       height: 100%;
       min-height: 320px;
-      object-fit: contain;
-      padding: 48px;
-      background: var(--color-deep-navy);
+      object-fit: cover;
     }
 
     .featured__card-body {
@@ -340,15 +330,10 @@ import { STORIES } from '../../../core/constants';
       overflow: hidden;
     }
 
-    .stories-page__card-placeholder {
+    .stories-page__card-img {
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, var(--color-deep-navy), #0a2a4a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.1);
-      font-size: 3rem;
+      object-fit: cover;
     }
 
     .stories-page__card-body {
@@ -431,8 +416,7 @@ import { STORIES } from '../../../core/constants';
         grid-template-columns: 1fr;
       }
 
-      .featured__card-image,
-      .featured__card-placeholder {
+      .featured__card-image {
         min-height: 240px;
       }
     }

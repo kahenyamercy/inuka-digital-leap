@@ -148,7 +148,16 @@ import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reve
         font-weight: 800;
         color: white;
         margin: 0 0 16px;
-        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+
+      .cta__subtitle {
+        font-family: var(--font-body);
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0 auto 32px;
+        max-width: 500px;
       }
 
       .cta__subtitle {

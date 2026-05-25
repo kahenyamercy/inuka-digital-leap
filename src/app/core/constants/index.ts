@@ -324,7 +324,7 @@ export const STORIES: Story[] = [
       'The Inuka Digital Leap Programme marked a defining milestone with the formation of its inaugural cohort of 15 trainees, who successfully applied, were selected, and formally enrolled into the intensive training pathway on June 15, 2026. The cohort represents the first intake under the programme’s structured digital workforce development framework. \n\n The launch and recognition event, hosted at the Jomo Kenyatta University of Agriculture and Technology (JKUAT) Main Campus, brought together stakeholders from industry, government, and the families of the trainees to acknowledge the significance of this pioneering group. \n\n Over a six-month period, Cohort 1 underwent rigorous, competency-based training covering network infrastructure, fibre optic engineering, broadband deployment, and cloud engineering. \n\n The curriculum developed in collaboration with industry partners through JHUB Africa combined structured classroom instruction with intensive hands-on laboratory and field-based learning',
     date: 'April 15, 2026',
     category: 'Milestone',
-    image: '',
+    image: '/assets/hero-image.png',
     featured: true,
   },
   {
@@ -337,7 +337,7 @@ export const STORIES: Story[] = [
       "The Kenya Pipeline Foundation has announced a significant commitment to expanding the Inuka Digital Leap programme, pledging resources to scale the initiative to reach more young Kenyans across additional counties. The announcement was made during a signing ceremony at the foundation's headquarters.\n\nThis partnership will focus on addressing the critical skills gap in fibre optics engineering, a field that is experiencing unprecedented demand as Kenya accelerates its national fibre rollout. The foundation's support will enable the programme to procure additional training equipment, expand laboratory facilities, and provide scholarships to deserving candidates from underserved communities.\n\n'Investing in digital skills is investing in Kenya's future,' said the foundation's Executive Director. 'The Inuka Digital Leap programme aligns perfectly with our mission to create sustainable economic opportunities for Kenyan youth.'\n\nThe expanded programme aims to train over 100 technicians annually, with a particular focus on increasing female participation in technical roles. The partnership also includes plans for trainer development programmes to ensure high-quality instruction across all training centres.",
     date: 'January 8, 2026',
     category: 'Partnership',
-    image: '',
+    image: '/assets/network-broadband.jpg',
     featured: false,
   },
   {
@@ -349,7 +349,7 @@ export const STORIES: Story[] = [
       "Kenya's digital transformation is being built on a foundation of fibre optics. As the government pushes forward with its ambitious national fibre rollout, the demand for skilled fibre optic technicians has skyrocketed. This presents a golden opportunity for Kenya's youth.\n\nThe numbers tell a compelling story. The national fibre backbone project aims to connect all 47 counties with high-speed internet infrastructure, requiring thousands of trained professionals for installation, splicing, testing, and maintenance. Yet the current talent pipeline is far from meeting this demand.\n\nInuka Digital Leap is helping to fill this gap by providing practical, industry-aligned training in fibre optic engineering. Trainees learn everything from basic cable handling and fusion splicing to advanced OTDR testing and network troubleshooting.\n\n'Fibre optics is not just a technical skill — it's a career pathway,' notes Engineer Peter Mwangi, a senior instructor at the programme. 'Our graduates are equipped with certifications that are recognised across the industry, giving them a significant advantage in the job market.'\n\nWith the government's commitment to universal internet access and the private sector's continued investment in network infrastructure, fibre optic skills will remain in high demand for years to come.",
     date: 'November 22, 2025',
     category: 'Insights',
-    image: '',
+    image: '/assets/optical.jpg',
     featured: false,
   },
   {
@@ -361,7 +361,7 @@ export const STORIES: Story[] = [
       "In a testament to the quality of training provided by the Inuka Digital Leap programme, all 15 members of Cohort 1 have successfully passed their Fibre Optic Splice Certification examination. The practical examination, administered by certified industry assessors, tested the trainees' proficiency in fusion splicing, mechanical splicing, and connector termination.\n\nThe certification process required each trainee to complete a series of timed practical tasks, including preparing fibre cables, performing fusion splices with minimal loss, and testing splices using an OTDR. The pass rate of 100% reflects both the dedication of the trainees and the effectiveness of the programme's hands-on training approach.\n\n'This certification is a significant achievement,' said Jane Akinyi, one of the top-performing trainees. 'It proves that we can work to industry standards and gives us the confidence to take on real projects in the field.'\n\nThe certification is recognised by major telecommunications operators in Kenya and across East Africa, significantly enhancing the employability of the graduates.",
     date: 'March 10, 2026',
     category: 'Training',
-    image: '',
+    image: '/assets/fibre-cable.png',
     featured: false,
   },
   {
@@ -373,7 +373,7 @@ export const STORIES: Story[] = [
       "Jomo Kenyatta University of Agriculture and Technology (JKUAT) and JHUB Africa have signed a renewed Memorandum of Understanding that expands the Inuka Digital Leap programme to four additional counties. The signing ceremony was attended by university leadership, programme partners, and representatives from the ICT sector.\n\nThe expanded partnership will establish new training centres in Kisumu, Nakuru, Meru, and Mombasa, bringing the programme closer to communities that have traditionally had limited access to specialised technical training. Each centre will be equipped with modern fibre optic training labs, complete with fusion splicers, OTDRs, and power meters.\n\n'This MoU represents our shared commitment to building Kenya's digital workforce,' said the JKUAT Vice Chancellor. 'By expanding to these counties, we are ensuring that the benefits of the digital economy reach every corner of Kenya.'\n\nCohort 2 recruitment is expected to begin shortly, with an expanded intake of 60 trainees across all training centres. The programme will maintain its focus on practical, industry-aligned training while introducing new modules on 5G technology and network automation.",
     date: 'February 28, 2026',
     category: 'Partnership',
-    image: '',
+    image: '/assets/about-idl.png',
     featured: false,
   },
   {
@@ -385,7 +385,7 @@ export const STORIES: Story[] = [
       "In a field traditionally dominated by men, the Inuka Digital Leap programme is charting a new course. With 42% female representation in its first cohort, the programme is demonstrating that gender inclusion is not just a goal but an achievable reality.\n\nThe trainees are thriving in what has historically been a male-dominated technical field. From fibre optic splicing to network configuration, the women of Cohort 1 are proving that technical skills have no gender.\n\n'When I first told my family I wanted to pursue fibre optics, they were surprised,' shares Grace Wanjiru, a trainee from Nyeri. 'But after seeing what I've learned — from fusion splicing to network testing — they are incredibly proud. This programme has given me a career I never imagined was possible.'\n\nThe programme's deliberate focus on inclusion includes targeted outreach to female students, mentorship from women already working in the tech industry, and a supportive learning environment that encourages participation.",
     date: 'January 20, 2026',
     category: 'Insights',
-    image: '',
+    image: '/assets/discussion.jpg',
     featured: false,
   },
   {
@@ -397,7 +397,7 @@ export const STORIES: Story[] = [
       "The trainees of Cohort 1 stepped out of the classroom and into the field for an immersive day of learning at active fibre deployment sites across Nairobi. The field visit, organised in partnership with a leading fibre infrastructure company, gave trainees a firsthand look at real-world network deployment operations.\n\nThe day began with a safety briefing followed by visits to three active deployment sites. At each location, experienced engineers demonstrated key processes including cable blowing through underground ducts, aerial fibre installation on existing utility poles, and final splicing and testing procedures.\n\n'Seeing these operations in person brings everything we've learned in class to life,' said Kevin Mboya, a trainee from Machakos. 'The scale of the infrastructure and the precision required in the work is remarkable.'\n\nThe field visit also included a demonstration of OTDR testing and troubleshooting, where trainees had the opportunity to operate the equipment under the guidance of experienced technicians.",
     date: 'December 12, 2025',
     category: 'Field Visit',
-    image: '',
+    image: '/assets/networking.jpg',
     featured: false,
   },
   {
@@ -409,7 +409,7 @@ export const STORIES: Story[] = [
       "The Inuka Digital Leap programme hosted a mentorship forum featuring senior engineers and technology leaders from Kenya's leading telecommunications companies. The event brought together experts from Safaricom, Telkom Kenya, and several fibre network operators for a day of knowledge sharing and career guidance.\n\nThe forum covered a wide range of topics, from the current state of Kenya's network infrastructure to emerging technologies like 5G, edge computing, and software-defined networking. The mentors shared their personal career journeys, offering valuable insights into the skills and attributes that drive success in the industry.\n\n'The telecommunications industry in Kenya is at an inflection point,' said James Ochieng, a network architect at Safaricom. 'With the rapid expansion of fibre networks and the upcoming 5G rollout, there has never been a better time to enter this field.'\n\nThe mentorship forum has now been established as a regular feature of the programme, with plans to expand it to include international experts and virtual participation from partner organisations.",
     date: 'November 30, 2025',
     category: 'Mentorship',
-    image: '',
+    image: '/assets/compare-fibre-.jpg',
     featured: false,
   },
   {
@@ -421,7 +421,7 @@ export const STORIES: Story[] = [
       "Kenya's digital transformation agenda faces a critical challenge: a severe shortage of skilled professionals to build, maintain, and expand the nation's network infrastructure. The Inuka Digital Leap programme was designed specifically to address this gap, and its impact is already being felt.\n\nThe programme's curriculum was developed in close consultation with industry partners to ensure alignment with real-world requirements. Trainees receive instruction in fibre optic engineering, broadband deployment, network security, and infrastructure automation — skills that are in immediate demand across the telecommunications sector.\n\n'We didn't want to create a theoretical programme,' explains Dr. Kamau. 'Every module is designed with practical application in mind. Our trainees don't just learn about fibre optics — they actually splice cables, test networks, and troubleshoot problems.'\n\nThe programme's industry partnerships are a key differentiator. Collaborations with equipment manufacturers ensure that trainees work with the same tools and technologies they will encounter in the field, while partnerships with network operators provide direct pathways to employment.",
     date: 'October 15, 2025',
     category: 'Insights',
-    image: '',
+    image: '/assets/stories.png',
     featured: true,
   },
   {
@@ -433,7 +433,7 @@ export const STORIES: Story[] = [
       "The trainees of Cohort 1 have commenced their industry attachments with partner organisations across Kenya, marking the final phase of the Inuka Digital Leap programme. The attachments place trainees with leading telecommunications companies, internet service providers, and network infrastructure firms.\n\nEach trainee has been assigned to a host organisation that aligns with their area of specialisation. The attachments, lasting eight weeks, provide trainees with supervised, hands-on experience in real operational environments. Trainees are working alongside experienced engineers on live projects, contributing to actual network deployments and maintenance activities.\n\n'The industry attachment is where the training truly comes together,' said Peter Otieno, who was placed with a fibre network operator in Kisumu. 'I'm working on actual fibre routes, performing splices that will carry real traffic, and learning from engineers who have been in this field for years.'\n\nThe attachments are also serving as extended job interviews, with several host organisations already expressing interest in hiring trainees upon successful completion.",
     date: 'September 5, 2025',
     category: 'Milestone',
-    image: '',
+    image: '/assets/hero-image.png',
     featured: false,
   },
   {
@@ -445,7 +445,7 @@ export const STORIES: Story[] = [
       "Trainees from the Inuka Digital Leap programme took their skills beyond the training lab and into the community, leading a digital literacy workshop for local youth in Kiambu County. The workshop, held at a community centre, was part of the programme's commitment to giving back to the community.\n\nThe trainees designed and delivered the workshop themselves, covering topics such as basic internet navigation, online safety, and career pathways in technology. Over 60 young people from the local community attended the day-long event.\n\n'It was empowering to share what we've learned with others,' said Sarah Wanjiku, one of the trainee facilitators. 'Many of the participants had never considered a career in tech before. By the end of the workshop, several of them were asking how they could apply for the next cohort.'\n\nThe community outreach initiative has been well received, and the programme plans to expand it to other counties in partnership with local government and community organisations.",
     date: 'August 22, 2025',
     category: 'Outreach',
-    image: '',
+    image: '/assets/discussion.jpg',
     featured: false,
   },
 ];

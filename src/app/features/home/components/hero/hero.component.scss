@@ -125,7 +125,7 @@
   &__title {
     font-family: var(--font-heading);
     font-weight: 900;
-    font-size: 4.5rem;
+    font-size: 5.5rem;
     line-height: 1.04;
     letter-spacing: -0.03em;
     color: white;
@@ -345,17 +345,73 @@
 
 @media (max-width: 1024px) {
   .hero {
-    &__title {
-      font-size: 3rem;
-    }
+    &__content { padding: 110px 0 64px; }
+    &__title { font-size: 3.5rem; }
+    &__subtitle { font-size: 1.05rem; max-width: 460px; }
+    &__badge { padding: 5px 14px; font-size: 0.55rem; }
+    &__btn { padding: 12px 26px; font-size: 0.9rem; }
+    &__data-stream { max-width: 380px; }
   }
 }
 
 @media (max-width: 768px) {
   .hero {
     min-height: 100dvh;
-    &__content { padding: 100px 0 48px; }
-    &__title { font-size: 2.25rem; }
-    &__subtitle { font-size: 1rem; }
+
+    &__bg-image {
+      background-position: 70% center;
+    }
+
+    &__content { padding: 80px 0 32px; }
+
+    &__title {
+      font-size: 3rem;
+      text-shadow: 0 2px 16px rgba(7, 27, 52, 0.8);
+    }
+
+    &__subtitle {
+      font-size: 0.95rem;
+      max-width: none;
+      line-height: 1.6;
+      text-shadow: 0 2px 16px rgba(7, 27, 52, 0.85);
+    }
+
+    &__badge-wrapper { margin-bottom: 16px; }
+    &__badge { padding: 4px 12px; font-size: 0.5rem; letter-spacing: 0.1em; }
+
+    &__actions {
+      flex-direction: row;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+
+    &__btn {
+      padding: 10px 20px;
+      font-size: 0.8rem;
+      flex: 1;
+    }
+
+    &__data-stream { display: none; }
+
+    &__grid { background-size: 40px 40px; }
+
+    &__glow--1 {
+      width: 300px;
+      height: 300px;
+      top: -100px;
+      right: -80px;
+    }
+    &__glow--2 { display: none; }
+
+    &__fibre-path { stroke-width: 0.6; &--3 { display: none; } }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    &__title { font-size: 2.2rem; }
+    &__subtitle { font-size: 0.85rem; }
+    &__content { padding: 72px 0 24px; }
+    &__btn { padding: 8px 16px; font-size: 0.75rem; }
   }
 }
