@@ -267,11 +267,11 @@ interface Milestone {
         align-items: center;
         font: var(--label-caps);
         letter-spacing: 0.15em;
-        color: var(--color-gold);
-        border: 1px solid rgba(212, 160, 23, 0.3);
+        color: var(--color-electric-blue);
+        border: 1px solid rgba(237, 27, 36, 0.3);
         padding: 6px 16px;
         border-radius: var(--rounded-md);
-        background: rgba(212, 160, 23, 0.08);
+        background: rgba(237, 27, 36, 0.08);
         margin-bottom: 20px;
       }
 

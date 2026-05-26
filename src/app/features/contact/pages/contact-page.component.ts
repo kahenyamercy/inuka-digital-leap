@@ -177,6 +177,13 @@ import { PARTNERS, SITE_CONFIG } from '../../../core/constants';
                     >
                       <span class="pi pi-tiktok" aria-hidden="true"></span>
                     </a>
+                    <a
+                      href="//https://www.facebook.com/JHUBAfrica"
+                      class="contact__social-link"
+                      aria-label="Facebook"
+                    >
+                      <span class="pi pi-facebook" aria-hidden="true"></span>
+                    </a>
                   </div>
                 </div>
               </div>

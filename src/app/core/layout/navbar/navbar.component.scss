@@ -5,18 +5,49 @@
   right: 0;
   z-index: 1000;
   height: var(--navbar-height);
-  transition: all var(--transition-base);
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: height var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 27, 52, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all var(--transition-base);
+    z-index: -1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(237, 27, 36, 0.25), transparent);
+    opacity: 0.6;
+    transition: opacity var(--transition-base);
+    z-index: -1;
+  }
 
   &--scrolled {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     height: 72px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+
+    &::before {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+    }
+
+    &::after {
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.04), transparent);
+      opacity: 1;
+    }
   }
 
   &__inner {
@@ -24,7 +55,9 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    gap: 24px;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
   }
 
   &__brand {
@@ -36,17 +69,18 @@
   &__logos {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
+    flex-shrink: 0;
   }
 
   &__logo-divider {
     width: 1px;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
+    height: 28px;
+    background: rgba(255, 255, 255, 0.15);
     flex-shrink: 0;
 
     .navbar--scrolled & {
-      background: rgba(0, 0, 0, 0.12);
+      background: rgba(0, 0, 0, 0.08);
     }
   }
 
@@ -55,6 +89,27 @@
     align-items: center;
     text-decoration: none;
     line-height: 0;
+    transition: transform var(--transition-fast);
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  &__logo-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    border-radius: var(--rounded-md);
+    background: rgba(255, 255, 255, 0.9);
+    transition: background var(--transition-fast), box-shadow var(--transition-fast);
+
+    .navbar--scrolled & {
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
   }
 
   &__brand-logo {
@@ -80,14 +135,14 @@
   &__nav {
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    flex: 1;
+    justify-content: center;
   }
 
   &__actions {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    margin-right: 8px;
   }
 
   &__links {
@@ -107,36 +162,40 @@
     font-size: 0.9rem;
     font-weight: 700;
     color: #fff;
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: var(--rounded-lg);
     transition: color var(--transition-fast);
     white-space: nowrap;
     text-decoration: none;
 
-    &::after {
+    &::before {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: var(--rounded-lg);
-      background: rgba(255, 255, 255, 0.1);
-      transform: scaleX(0.8) scaleY(0.5);
+      background: rgba(255, 255, 255, 0.08);
+      transform: scaleX(0.85) scaleY(0.6);
       opacity: 0;
       transition: all var(--transition-base);
       pointer-events: none;
       z-index: -1;
     }
 
-    &:hover::after {
+    &:hover::before {
       transform: scaleX(1) scaleY(1);
       opacity: 1;
     }
 
     &:hover {
-      color: rgba(255, 255, 255, 0.85);
+      color: #fff;
     }
 
     .navbar--scrolled & {
       color: var(--color-deep-navy);
+
+      &::before {
+        background: rgba(7, 27, 52, 0.06);
+      }
 
       &:hover {
         color: var(--color-electric-blue);
@@ -150,7 +209,7 @@
         color: var(--color-electric-blue) !important;
       }
 
-      &::after {
+      &::before {
         background: rgba(255, 255, 255, 0.15);
         transform: scaleX(1) scaleY(1);
         opacity: 1;
@@ -159,23 +218,23 @@
           background: rgba(237, 27, 36, 0.08);
         }
       }
-
-      &:hover {
-        .navbar--scrolled & {
-          background: transparent;
-        }
-      }
     }
   }
 
   &__link-indicator {
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--color-electric-blue);
     flex-shrink: 0;
-    box-shadow: 0 0 6px rgba(237, 27, 36, 0.6);
+    box-shadow: 0 0 6px rgba(237, 27, 36, 0.5);
+    animation: indicatorPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes indicatorPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.9); }
   }
 
   &__cta {
@@ -213,21 +272,25 @@
     align-items: center;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--rounded-lg);
     cursor: pointer;
     gap: 5px;
     padding: 8px;
-    transition: background var(--transition-fast);
+    transition: background var(--transition-fast), border-color var(--transition-fast);
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.18);
     }
 
     .navbar--scrolled & {
-      background: rgba(7, 27, 52, 0.06);
-      border-color: rgba(0, 0, 0, 0.1);
+      background: rgba(7, 27, 52, 0.05);
+      border-color: rgba(0, 0, 0, 0.08);
+
+      &:hover {
+        background: rgba(7, 27, 52, 0.1);
+      }
     }
   }
 
@@ -264,11 +327,11 @@
     right: var(--gutter);
     width: 280px;
     max-width: calc(100vw - 32px);
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(7, 27, 52, 0.92);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
     padding: 12px;
     border-radius: var(--rounded-xl);
     display: flex;
@@ -281,6 +344,9 @@
 
     .navbar--scrolled & {
       top: calc(72px + 8px);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
     }
   }
 
@@ -323,17 +389,17 @@
     font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--color-deep-navy);
+    color: rgba(255, 255, 255, 0.85);
     border-radius: var(--rounded-lg);
     transition: color var(--transition-fast);
     text-decoration: none;
 
-    &::after {
+    &::before {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: var(--rounded-lg);
-      background: rgba(7, 27, 52, 0.06);
+      background: rgba(255, 255, 255, 0.06);
       transform: scaleX(0.9) scaleY(0.6);
       opacity: 0;
       transition: all var(--transition-base);
@@ -341,18 +407,38 @@
       z-index: -1;
     }
 
-    &:hover::after {
+    &:hover::before {
       transform: scaleX(1) scaleY(1);
       opacity: 1;
     }
 
-    &--active {
-      color: var(--color-electric-blue);
+    &:hover {
+      color: #fff;
+    }
 
-      &::after {
-        background: rgba(237, 27, 36, 0.08);
+    .navbar--scrolled & {
+      color: var(--color-deep-navy);
+
+      &::before {
+        background: rgba(7, 27, 52, 0.06);
+      }
+
+      &:hover {
+        color: var(--color-electric-blue);
+      }
+    }
+
+    &--active {
+      color: var(--color-electric-blue) !important;
+
+      &::before {
+        background: rgba(237, 27, 36, 0.12);
         transform: scaleX(1) scaleY(1);
         opacity: 1;
+
+        .navbar--scrolled & {
+          background: rgba(237, 27, 36, 0.08);
+        }
       }
     }
   }
@@ -399,6 +485,16 @@
 
 @media (max-width: 1100px) {
   .navbar {
+    &__inner {
+      justify-content: center;
+    }
+
+    &__brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     &__nav {
       display: none;
     }
@@ -409,6 +505,8 @@
 
     &__hamburger {
       display: flex;
+      position: absolute;
+      left: var(--gutter);
     }
   }
 }
@@ -417,34 +515,48 @@
   .navbar {
     height: var(--navbar-height-mobile);
 
+    &__inner {
+      justify-content: center;
+    }
+
+    &__brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     &__logos {
-      gap: 10px;
+      gap: 8px;
     }
 
     &__logo-divider {
       height: 24px;
     }
 
+    &__logo-frame {
+      padding: 4px 6px;
+
+      .navbar--scrolled & {
+        padding: 0;
+      }
+    }
+
     &__brand-logo {
       &--idl {
-        height: 32px;
-      }
-
-      &--jhub {
         height: 28px;
       }
 
+      &--jhub {
+        height: 24px;
+      }
+
       &--jkuat {
-        height: 30px;
+        height: 26px;
       }
     }
 
     &--scrolled {
       height: 60px;
-
-      .navbar__brand-logo {
-        filter: none;
-      }
     }
 
     &__mobile-menu {
@@ -455,6 +567,76 @@
         top: calc(60px + 6px);
       }
     }
+
+    &__hamburger {
+      position: absolute;
+      left: var(--margin-mobile, 16px);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    height: var(--navbar-height-mobile);
+
+    &__inner {
+      justify-content: center;
+    }
+
+    &__brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &__logos {
+      gap: 8px;
+    }
+
+    &__logo-divider {
+      height: 24px;
+    }
+
+    &__logo-frame {
+      padding: 4px 6px;
+
+      .navbar--scrolled & {
+        padding: 0;
+      }
+    }
+
+    &__brand-logo {
+      &--idl {
+        height: 28px;
+      }
+
+      &--jhub {
+        height: 24px;
+      }
+
+      &--jkuat {
+        height: 26px;
+      }
+    }
+
+    &--scrolled {
+      height: 60px;
+    }
+
+    &__mobile-menu {
+      top: calc(var(--navbar-height-mobile) + 6px);
+      right: var(--margin-mobile, 16px);
+
+      .navbar--scrolled & {
+        top: calc(60px + 6px);
+      }
+    }
+
+    &__hamburger {
+      position: absolute;
+      left: var(--margin-mobile, 16px);
+    }
+  }
   }
 
   .back-to-top {
