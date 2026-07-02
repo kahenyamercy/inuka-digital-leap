@@ -26,8 +26,13 @@ THIRD_PARTY_APPS = [
     'drf_spectacular',
 ]
 
-LOCAL_APPS = []
-
+LOCAL_APPS = [
+    'cohorts',
+    'activities',
+    'content',
+    'impact',
+    'partners',
+]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
