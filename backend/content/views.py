@@ -8,6 +8,7 @@ from .serializers import (
 
 
 class PostViewSet(viewsets.ModelViewSet):
+    serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['title', 'content']
@@ -31,6 +32,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 class GalleryItemViewSet(viewsets.ModelViewSet):
     queryset = GalleryItem.objects.select_related('cohort').all()
+    serializer_class = GalleryItemSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'caption']
@@ -38,4 +40,5 @@ class GalleryItemViewSet(viewsets.ModelViewSet):
 
 class SiteSettingViewSet(viewsets.ModelViewSet):
     queryset = SiteSetting.objects.all()
+    serializer_class = SiteSettingSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]

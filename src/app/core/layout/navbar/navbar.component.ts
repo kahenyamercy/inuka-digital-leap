@@ -83,9 +83,20 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
     event.preventDefault();
     this.closeMobileMenu();
     if (this.isHomePage()) {
-      document.getElementById(fragment)?.scrollIntoView({ behavior: 'smooth' });
+      this.scrollToFragmentWhenReady(fragment);
     } else {
-      this.router.navigate(['/'], { fragment });
+      this.router.navigateByUrl('/').then(() => {
+        this.scrollToFragmentWhenReady(fragment);
+      });
+    }
+  }
+
+  private scrollToFragmentWhenReady(fragment: string, attempts = 20): void {
+    const el = document.getElementById(fragment);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else if (attempts > 0) {
+      setTimeout(() => this.scrollToFragmentWhenReady(fragment, attempts - 1), 50);
     }
   }
 

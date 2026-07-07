@@ -14,7 +14,7 @@ class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='posts')
     title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=255, unique=True)
     content = models.TextField()
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='news')
     cover_image = models.ImageField(upload_to='posts/', blank=True, null=True)

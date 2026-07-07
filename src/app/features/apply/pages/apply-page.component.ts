@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
-import { PARTNERS } from '../../../core/constants';
+import { PartnerService } from '../../../core/services/partner.service';
+import { Partner } from '../../../core/models/partner.model';
 
 @Component({
   selector: 'app-apply-page',
@@ -94,10 +95,10 @@ import { PARTNERS } from '../../../core/constants';
           <h2 class="partners__title">Backed by Kenya's Leading Institutions</h2>
         </div>
         <div class="partners__grid" appScrollReveal="fade-up">
-          @for (partner of partners; track partner.name) {
+          @for (partner of partners(); track partner.id) {
             <div class="partners__card">
-              <img [src]="partner.logo" [alt]="partner.alt" class="partners__logo" loading="lazy" />
-              <span class="partners__name">{{ partner.fullName }}</span>
+              @if (partner.logo) { <img [src]="partner.logo" [alt]="partner.name" class="partners__logo" loading="lazy" /> }
+              <span class="partners__name">{{ partner.name }}</span>
             </div>
           }
         </div>
@@ -452,6 +453,14 @@ import { PARTNERS } from '../../../core/constants';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ApplyPageComponent {
-  protected readonly partners = PARTNERS;
+export class ApplyPageComponent implements OnInit {
+  private readonly partnerService = inject(PartnerService);
+  protected readonly partners = signal<Partner[]>([]);
+
+  ngOnInit(): void {
+    this.partnerService.getPartners().subscribe({
+      next: (data) => this.partners.set(data),
+      error: () => {}
+    });
+  }
 }

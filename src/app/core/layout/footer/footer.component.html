@@ -81,7 +81,7 @@
         <div class="footer__col footer__col--partners">
           <h4 class="footer__heading">Our Partners</h4>
           <div class="footer__logos">
-            @for (partner of partners; track partner.name) {
+            @for (partner of partners(); track partner.id) {
               <div class="footer__logo-wrapper">
 
 
@@ -90,11 +90,11 @@
 
                 <img
                   [src]="partner.logo"
-                  [alt]="partner.alt"
+                  [alt]="partner.name"
                   class="footer__logo"
                   loading="lazy"
                 />
-                <span class="footer__logo-name">{{ partner.fullName }}</span>
+                <span class="footer__logo-name">{{ partner.name }}</span>
               </div>
             }
           </div>

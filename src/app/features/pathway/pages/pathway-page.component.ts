@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal, OnInit } from '@angular/core';
 import { SectionHeaderComponent } from '../../../shared/components/section-header/section-header.component';
 import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
-import { PATHWAY_STEPS } from '../../../core/constants';
+import { ContentService } from '../../../core/services/content.service';
+import { PathwayStep } from '../../../core/models/pathway.model';
 
 @Component({
   selector: 'app-pathway-page',
@@ -35,8 +36,8 @@ import { PATHWAY_STEPS } from '../../../core/constants';
             label="The Journey"
           />
           <div class="pathway-timeline__rail">
-            @for (step of steps; track step.step; let i = $index) {
-              <div class="pathway-timeline__step" [class.pathway-timeline__step--last]="i === steps.length - 1" appScrollReveal="fade-up" [delay]="i * 120">
+            @for (step of steps(); track step.step; let i = $index) {
+              <div class="pathway-timeline__step" [class.pathway-timeline__step--last]="i === steps().length - 1" appScrollReveal="fade-up" [delay]="i * 120">
                 <div class="pathway-timeline__step-line" [class.pathway-timeline__step-line--filled]="step.status === 'completed' || step.status === 'active'"></div>
                 <div class="pathway-timeline__step-line pathway-timeline__step-line--connector" [class.pathway-timeline__step-line--filled]="step.status === 'completed'"></div>
 
@@ -397,6 +398,16 @@ import { PATHWAY_STEPS } from '../../../core/constants';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PathwayPageComponent {
-  protected readonly steps = PATHWAY_STEPS;
+export class PathwayPageComponent implements OnInit {
+  private readonly contentService = inject(ContentService);
+  protected readonly steps = signal<PathwayStep[]>([]);
+
+  ngOnInit(): void {
+    this.contentService.getSettingByKey<PathwayStep[]>('pathway_steps').subscribe({
+      next: (data) => {
+        if (data) this.steps.set(data);
+      },
+      error: () => {}
+    });
+  }
 }
