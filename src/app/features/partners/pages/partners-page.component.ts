@@ -47,6 +47,16 @@ import { Partner } from '../../../core/models/partner.model';
                 </div>
                 <h2 class="partners-page__card-name">{{ partner.name }}</h2>
                 <p class="partners-page__card-description">{{ partner.description }}</p>
+                @if (partner.focus_areas_list?.length) {
+                  <div class="partners-page__focus">
+                    <span class="partners-page__focus-label">Focus Areas</span>
+                    <div class="partners-page__focus-tags">
+                      @for (area of partner.focus_areas_list; track area) {
+                        <span class="partners-page__focus-tag">{{ area }}</span>
+                      }
+                    </div>
+                  </div>
+                }
                 @if (partner.website_url) {
                   <a [href]="partner.website_url" target="_blank" rel="noopener noreferrer" class="partners-page__card-link">
                     Visit website <span class="pi pi-external-link" aria-hidden="true"></span>
@@ -96,6 +106,10 @@ import { Partner } from '../../../core/models/partner.model';
     .partners-page__card-description { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.7; color: var(--color-on-surface-variant); margin: 0; }
     .partners-page__card-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; color: var(--color-electric-blue); text-decoration: none; transition: gap var(--transition-fast); }
     .partners-page__card-link:hover { gap: 10px; }
+    .partners-page__focus { display: flex; flex-direction: column; gap: 8px; }
+    .partners-page__focus-label { font: var(--label-caps); font-size: 0.7rem; color: var(--color-on-surface-variant); letter-spacing: 0.08em; }
+    .partners-page__focus-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .partners-page__focus-tag { font-size: 0.75rem; font-family: var(--font-body); font-weight: 500; color: var(--color-on-surface-variant); background: var(--color-surface-container-low); padding: 4px 12px; border-radius: var(--rounded-full); border: 1px solid var(--color-outline-variant); }
     .partners-cta { padding: 80px 0 100px; background: var(--color-surface); text-align: center; }
     .partners-cta__title { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; color: var(--color-deep-navy); margin: 0 0 12px; }
     .partners-cta__text { max-width: 560px; margin: 0 auto 28px; font-family: var(--font-body); font-size: 1rem; line-height: 1.7; color: var(--color-on-surface-variant); }

@@ -3,6 +3,8 @@ export interface Partner {
   name: string;
   role: string;
   description: string;
+  focus_areas: string;
+  focus_areas_list: string[];
   logo: string;
   website_url: string;
   is_required_acknowledgement: boolean;
