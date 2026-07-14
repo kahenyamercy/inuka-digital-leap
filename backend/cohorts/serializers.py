@@ -22,7 +22,7 @@ class FellowListSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'full_name', 'county', 'specialization',
             'technical_interest', 'placement_status',
-            'photo', 'is_featured'
+            'photo', 'is_featured', 'quote'
         ]
 
 
