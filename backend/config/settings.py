@@ -9,6 +9,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
 
 DJANGO_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -158,3 +159,81 @@ SPECTACULAR_SETTINGS = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ==========================================
+# Jazzmin Admin Theme Configuration
+# ==========================================
+JAZZMIN_SETTINGS = {
+    "site_title": "Inuka Digital Leap Admin",
+    "site_header": "Inuka Digital Leap",
+    "site_brand": "Inuka Digital Leap",
+    "welcome_sign": "Welcome to Inuka Digital Leap Admin",
+    "copyright": "Inuka Digital Leap — Kenya Pipeline Programme",
+
+    "search_model": ["cohorts.Fellow", "content.Post"],
+
+    "topmenu_links": [
+        {"name": "View Site", "url": "/", "new_window": True},
+        {"name": "API Docs", "url": "/api/docs/", "new_window": True},
+        {"model": "auth.User"},
+    ],
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "cohorts.Cohort": "fas fa-layer-group",
+        "cohorts.Fellow": "fas fa-user-graduate",
+        "cohorts.Certification": "fas fa-certificate",
+        "activities.Activity": "fas fa-bolt",
+        "content.Post": "fas fa-newspaper",
+        "content.GalleryItem": "fas fa-images",
+        "content.SiteSetting": "fas fa-cogs",
+        "impact.Metric": "fas fa-chart-line",
+        "partners.Partner": "fas fa-handshake",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+
+    "related_modal_active": True,
+    "custom_css": None,
+    "custom_js": None,
+    "show_ui_builder": False,
+
+    "changeform_format": "horizontal_tabs",
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "flatly",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+}
